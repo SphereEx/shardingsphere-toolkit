@@ -23,6 +23,7 @@
     </modules>
     
     <build>
+        <finalName>${project.artifactId}-${project.version}.jar</finalName>
         <pluginManagement>
             <plugins>
                 <plugin>
