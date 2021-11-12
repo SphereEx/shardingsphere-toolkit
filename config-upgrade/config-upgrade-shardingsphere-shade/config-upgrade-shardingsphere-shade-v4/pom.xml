@@ -109,7 +109,7 @@
                             </excludes>
                         </filter>
                     </filters>
-                    <outputFile>${project.basedir}/../../config-upgrade-core/target/lib/shade/${project.build.finalName}</outputFile>
+                    <outputFile>${project.basedir}/../../config-upgrade-core/target/lib/shade/${project.build.finalName}.jar</outputFile>
                 </configuration>
             </plugin>
         </plugins>
