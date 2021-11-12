@@ -21,6 +21,25 @@
         
         <dependency>
             <groupId>com.sphereex.shardingsphere-toolkit</groupId>
+            <artifactId>config-upgrade-shardingsphere-shade-v4</artifactId>
+            <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>lib.shade</groupId>
+            <artifactId>config-upgrade-shardingsphere-shade-v4</artifactId>
+            <version>${project.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/target/lib/shade/config-upgrade-shardingsphere-shade-v4-1.0-SNAPSHOT.jar</systemPath>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.sphereex.shardingsphere-toolkit</groupId>
             <artifactId>config-upgrade-shardingsphere-shade-v5</artifactId>
             <version>${project.version}</version>
             <exclusions>
