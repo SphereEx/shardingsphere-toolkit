@@ -59,17 +59,6 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/target/lib/shade/config-upgrade-shardingsphere-shade-v5-1.0-SNAPSHOT.jar</systemPath>
         </dependency>
-        
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-library</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
 </project>
