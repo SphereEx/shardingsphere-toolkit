@@ -21,6 +21,7 @@
         <project.build.locale>zh_CN</project.build.locale>
         
         <lombok.version>1.18.20</lombok.version>
+        <commons-lang3.version>3.8</commons-lang3.version>
         <snakeyaml.version>1.16</snakeyaml.version>
         
         <junit.version>4.12</junit.version>
@@ -35,6 +36,17 @@
     
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>${snakeyaml.version}</version>
+            </dependency>
+            
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
