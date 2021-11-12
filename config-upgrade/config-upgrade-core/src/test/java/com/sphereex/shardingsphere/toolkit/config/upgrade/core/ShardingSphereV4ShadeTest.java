@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.shardingsphere.toolkit.config.upgrade.core;
+package com.sphereex.shardingsphere.toolkit.config.upgrade.core;
 
 import org.apache.shardingsphere.v4.api.config.sharding.ShardingRuleConfiguration;
 import org.apache.shardingsphere.v4.core.yaml.config.sharding.YamlShardingRuleConfiguration;
