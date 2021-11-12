@@ -82,4 +82,9 @@ public enum ShardingSphereVersion {
     public static ShardingSphereVersion valueOfByName(final String name) {
         return NAME_VERSION_MAP.get(name);
     }
+    
+    @Override
+    public String toString() {
+        return String.format("%s{name=%s,series=%s}", name(), name, series);
+    }
 }

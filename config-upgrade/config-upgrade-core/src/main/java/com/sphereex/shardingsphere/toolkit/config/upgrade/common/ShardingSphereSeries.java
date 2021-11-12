@@ -17,10 +17,13 @@
 
 package com.sphereex.shardingsphere.toolkit.config.upgrade.common;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * ShardingSphere series.
@@ -59,5 +62,27 @@ public enum ShardingSphereSeries {
      */
     public ShardingSphereSeries next() {
         return NEXT_MAP.get(this);
+    }
+    
+    /**
+     * Get series upgrade path.
+     *
+     * @param targetSeries target series
+     * @return series upgrade path
+     */
+    public List<ShardingSphereSeries> getSeriesUpgradePath(final ShardingSphereSeries targetSeries) {
+        Objects.requireNonNull(targetSeries, "target series is null");
+        ShardingSphereSeries sourceSeries = this;
+        if (sourceSeries.ordinal() >= targetSeries.ordinal()) {
+            throw new IllegalArgumentException("source series must be less than target series");
+        }
+        List<ShardingSphereSeries> result = new ArrayList<>();
+        ShardingSphereSeries current = sourceSeries;
+        ShardingSphereSeries next;
+        while (null != (next = current.next()) && next.ordinal() <= targetSeries.ordinal()) {
+            result.add(current);
+            current = current.next();
+        }
+        return result;
     }
 }

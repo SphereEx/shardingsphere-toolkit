@@ -22,8 +22,10 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 public final class ShardingSphereSeriesTest {
@@ -35,5 +37,37 @@ public final class ShardingSphereSeriesTest {
         for (Pair<ShardingSphereSeries, ShardingSphereSeries> each : testSet) {
             assertThat(each.getLeft().next(), is(each.getRight()));
         }
+    }
+    
+    @Test(expected = NullPointerException.class)
+    public void assertGetSeriesUpgradePathNPE() {
+        ShardingSphereSeries.V4.getSeriesUpgradePath(null);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void assertGetSeriesUpgradePathSeriesGt() {
+        ShardingSphereSeries.V4.getSeriesUpgradePath(ShardingSphereSeries.V3);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void assertGetSeriesUpgradePathSeriesEq() {
+        ShardingSphereSeries.V4.getSeriesUpgradePath(ShardingSphereSeries.V4);
+    }
+    
+    @Test
+    public void assertGetSeriesUpgradePathSuccess1() {
+        List<ShardingSphereSeries> seriesUpgradePath = ShardingSphereSeries.V4.getSeriesUpgradePath(ShardingSphereSeries.V5);
+        assertNotNull(seriesUpgradePath);
+        assertThat(seriesUpgradePath.size(), is(1));
+        assertThat(seriesUpgradePath.get(0), is(ShardingSphereSeries.V4));
+    }
+    
+    @Test
+    public void assertGetSeriesUpgradePathSuccess2() {
+        List<ShardingSphereSeries> seriesUpgradePath = ShardingSphereSeries.V3.getSeriesUpgradePath(ShardingSphereSeries.V5);
+        assertNotNull(seriesUpgradePath);
+        assertThat(seriesUpgradePath.size(), is(2));
+        assertThat(seriesUpgradePath.get(0), is(ShardingSphereSeries.V3));
+        assertThat(seriesUpgradePath.get(1), is(ShardingSphereSeries.V4));
     }
 }

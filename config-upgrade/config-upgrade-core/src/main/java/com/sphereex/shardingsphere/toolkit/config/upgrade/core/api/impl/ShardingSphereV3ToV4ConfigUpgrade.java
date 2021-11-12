@@ -20,10 +20,12 @@ package com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.impl;
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.ShardingSphereSeries;
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.config.SeriesConfigItems;
 import com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.ShardingSphereSingleSeriesConfigUpgrade;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * ShardingSphere V3 to V4 config upgrade.
  */
+@Slf4j
 public final class ShardingSphereV3ToV4ConfigUpgrade implements ShardingSphereSingleSeriesConfigUpgrade {
     
     @Override
@@ -32,8 +34,9 @@ public final class ShardingSphereV3ToV4ConfigUpgrade implements ShardingSphereSi
     }
     
     @Override
-    public SeriesConfigItems upgrade(final SeriesConfigItems configItems) {
+    public SeriesConfigItems upgrade(final SeriesConfigItems oldConfigItems) {
+        log.info("upgrade, oldConfigItems={}", oldConfigItems);
         // TODO v3 to v4 upgrade
-        return null;
+        return new SeriesConfigItems(getSourceSeries().next());
     }
 }

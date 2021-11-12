@@ -18,6 +18,7 @@
 package com.sphereex.shardingsphere.toolkit.config.upgrade.common.config;
 
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
@@ -30,8 +31,15 @@ import lombok.ToString;
 @Setter
 @ToString(exclude = "content")
 public final class SeriesConfigItem {
-
+    
+    @NonNull
     private final String name;
-
+    
+    @NonNull
     private final String content;
+    
+    /**
+     * Object deserialized from content.
+     */
+    private Object contentObject;
 }

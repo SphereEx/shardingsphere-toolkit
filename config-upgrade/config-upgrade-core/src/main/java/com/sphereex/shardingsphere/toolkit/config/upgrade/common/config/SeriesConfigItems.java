@@ -17,6 +17,11 @@
 
 package com.sphereex.shardingsphere.toolkit.config.upgrade.common.config;
 
+import com.sphereex.shardingsphere.toolkit.config.upgrade.common.ShardingSphereSeries;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -24,7 +29,12 @@ import java.util.List;
 /**
  * Config items of series.
  */
+@RequiredArgsConstructor
 public final class SeriesConfigItems {
+    
+    @Getter
+    @NonNull
+    private final ShardingSphereSeries series;
     
     private final List<SeriesConfigItem> configItemList = new ArrayList<>();
     
@@ -44,5 +54,10 @@ public final class SeriesConfigItems {
      */
     public void addConfigItem(final SeriesConfigItem configItem) {
         configItemList.add(configItem);
+    }
+    
+    @Override
+    public String toString() {
+        return "SeriesConfigItems{" + "series=" + series + ", configItemList=" + configItemList + '}';
     }
 }

@@ -15,28 +15,26 @@
  * limitations under the License.
  */
 
-package com.sphereex.shardingsphere.toolkit.config.upgrade.core.api;
+package com.sphereex.shardingsphere.toolkit.config.upgrade.common;
 
-import com.sphereex.shardingsphere.toolkit.config.upgrade.common.ShardingSphereSeries;
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.config.SeriesConfigItems;
+import lombok.Data;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 /**
- * ShardingSphere single series config upgrade SPI interface.
+ * Config upgrade parameter.
  */
-public interface ShardingSphereSingleSeriesConfigUpgrade {
+@RequiredArgsConstructor
+@Data
+public final class ConfigUpgradeParameter {
     
-    /**
-     * Get source series.
-     *
-     * @return source series
-     */
-    ShardingSphereSeries getSourceSeries();
+    @NonNull
+    private final ShardingSphereVersion sourceVersion;
     
-    /**
-     * Upgrade.
-     *
-     * @param oldConfigItems old series config items
-     * @return new series config items
-     */
-    SeriesConfigItems upgrade(SeriesConfigItems oldConfigItems);
+    @NonNull
+    private final ShardingSphereVersion targetVersion;
+    
+    @NonNull
+    private final SeriesConfigItems sourceConfigItems;
 }
