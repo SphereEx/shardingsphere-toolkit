@@ -17,27 +17,24 @@
 
 package com.sphereex.shardingsphere.toolkit.config.upgrade.common;
 
-import com.sphereex.shardingsphere.toolkit.config.upgrade.common.config.SeriesConfigItems;
-import lombok.Data;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import java.util.Objects;
 
 /**
- * Config upgrade parameter.
+ * ShardingSphere product type.
  */
-@RequiredArgsConstructor
-@Data
-public final class ConfigUpgradeParameter {
+public enum ShardingSphereProductType {
     
-    @NonNull
-    private final ShardingSphereProductType productType;
+    JDBC,
+    PROXY;
     
-    @NonNull
-    private final ShardingSphereVersion sourceVersion;
-    
-    @NonNull
-    private final ShardingSphereVersion targetVersion;
-    
-    @NonNull
-    private final SeriesConfigItems sourceConfigItems;
+    /**
+     * Value of by name, ignore case.
+     *
+     * @param name name
+     * @return product type
+     */
+    public static ShardingSphereProductType valueOfByName(final String name) {
+        Objects.requireNonNull(name, "name is null");
+        return valueOf(name.toUpperCase());
+    }
 }

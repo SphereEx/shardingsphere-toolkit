@@ -18,6 +18,7 @@
 package com.sphereex.shardingsphere.toolkit.config.upgrade.core;
 
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.ConfigUpgradeParameter;
+import com.sphereex.shardingsphere.toolkit.config.upgrade.common.ShardingSphereProductType;
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.ShardingSphereVersion;
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.config.SeriesConfigItems;
 import org.junit.Test;
@@ -30,10 +31,11 @@ public final class ShardingSphereMultipleSeriesConfigUpgradeTest {
     
     @Test
     public void assertUpgrade1() {
+        ShardingSphereProductType productType = ShardingSphereProductType.PROXY;
         ShardingSphereVersion sourceVersion = ShardingSphereVersion.V4_0_0;
         ShardingSphereVersion targetVersion = ShardingSphereVersion.V5_0_0;
         SeriesConfigItems sourceConfigItems = new SeriesConfigItems(sourceVersion.getSeries());
-        ConfigUpgradeParameter parameter = new ConfigUpgradeParameter(sourceVersion, targetVersion, sourceConfigItems);
+        ConfigUpgradeParameter parameter = new ConfigUpgradeParameter(productType, sourceVersion, targetVersion, sourceConfigItems);
         ShardingSphereMultipleSeriesConfigUpgrade configUpgrade = new ShardingSphereMultipleSeriesConfigUpgrade();
         SeriesConfigItems targetConfigItems = configUpgrade.upgrade(parameter);
         assertNotNull(targetConfigItems);

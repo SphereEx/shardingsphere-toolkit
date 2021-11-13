@@ -17,27 +17,25 @@
 
 package com.sphereex.shardingsphere.toolkit.config.upgrade.common;
 
-import com.sphereex.shardingsphere.toolkit.config.upgrade.common.config.SeriesConfigItems;
-import lombok.Data;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.tuple.Pair;
+import org.junit.Test;
 
-/**
- * Config upgrade parameter.
- */
-@RequiredArgsConstructor
-@Data
-public final class ConfigUpgradeParameter {
+import java.util.Arrays;
+import java.util.Collection;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
+public final class ShardingSphereProductTypeTest {
     
-    @NonNull
-    private final ShardingSphereProductType productType;
-    
-    @NonNull
-    private final ShardingSphereVersion sourceVersion;
-    
-    @NonNull
-    private final ShardingSphereVersion targetVersion;
-    
-    @NonNull
-    private final SeriesConfigItems sourceConfigItems;
+    @Test
+    public void assertValueOfByName() {
+        Collection<Pair<String, ShardingSphereProductType>> dataSet = Arrays.asList(
+                Pair.of("jdbc", ShardingSphereProductType.JDBC), Pair.of("JDBC", ShardingSphereProductType.JDBC),
+                Pair.of("proxy", ShardingSphereProductType.PROXY), Pair.of("PROXY", ShardingSphereProductType.PROXY)
+        );
+        for (Pair<String, ShardingSphereProductType> each : dataSet) {
+            assertThat(ShardingSphereProductType.valueOfByName(each.getLeft()), is(each.getRight()));
+        }
+    }
 }
