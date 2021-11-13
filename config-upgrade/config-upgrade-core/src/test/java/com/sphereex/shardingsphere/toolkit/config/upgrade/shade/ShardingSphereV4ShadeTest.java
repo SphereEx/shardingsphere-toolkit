@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-package com.sphereex.shardingsphere.toolkit.config.upgrade.core;
+package com.sphereex.shardingsphere.toolkit.config.upgrade.shade;
 
-import org.apache.shardingsphere.v5.sharding.api.config.ShardingRuleConfiguration;
-import org.apache.shardingsphere.v5.sharding.yaml.config.YamlShardingRuleConfiguration;
-import org.apache.shardingsphere.v5.sharding.yaml.swapper.ShardingRuleConfigurationYamlSwapper;
+import org.apache.shardingsphere.v4.api.config.sharding.ShardingRuleConfiguration;
+import org.apache.shardingsphere.v4.core.yaml.config.sharding.YamlShardingRuleConfiguration;
+import org.apache.shardingsphere.v4.core.yaml.swapper.ShardingRuleConfigurationYamlSwapper;
 import org.junit.Test;
 
 import java.util.Collection;
@@ -29,13 +29,13 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
-public final class ShardingSphereV5ShadeTest {
+public final class ShardingSphereV4ShadeTest {
     
     @Test
     public void assertShade() {
         YamlShardingRuleConfiguration yamlConfig = new YamlShardingRuleConfiguration();
         yamlConfig.setBindingTables(Collections.singletonList("t_order"));
-        ShardingRuleConfiguration config = new ShardingRuleConfigurationYamlSwapper().swapToObject(yamlConfig);
+        ShardingRuleConfiguration config = new ShardingRuleConfigurationYamlSwapper().swap(yamlConfig);
         Collection<String> actual = config.getBindingTableGroups();
         assertNotNull(actual);
         assertThat(actual.size(), is(1));

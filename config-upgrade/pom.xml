@@ -14,8 +14,6 @@
     <name>${project.artifactId}</name>
     
     <modules>
-        <module>config-upgrade-common</module>
-        <module>config-upgrade-api</module>
         <module>config-upgrade-core</module>
         <module>config-upgrade-shardingsphere-shade</module>
         <module>config-upgrade-bootstrap</module>
