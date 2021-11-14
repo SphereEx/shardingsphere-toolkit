@@ -30,6 +30,7 @@ import java.util.Objects;
 public enum ShardingSphereVersion {
     
     V4_0_0("4.0.0", ShardingSphereSeries.V4),
+    V4_0_1("4.0.1", ShardingSphereSeries.V4),
     V4_1_0("4.1.0", ShardingSphereSeries.V4),
     V4_1_1("4.1.1", ShardingSphereSeries.V4),
     V5_0_0("5.0.0", ShardingSphereSeries.V5);

@@ -68,7 +68,7 @@ public final class ConfigUpgradeBootstrap {
             log.error("Create target conf dir failed, {}", targetConfDir.getAbsolutePath());
             return;
         }
-        SeriesConfigItems sourceConfigItems = new SeriesConfigItems(context.getSourceVersion().getSeries());
+        SeriesConfigItems sourceConfigItems = new SeriesConfigItems(context.getSourceVersion().getSeries(), context.getProductType());
         for (File each : context.getSourceFiles()) {
             String content;
             try {

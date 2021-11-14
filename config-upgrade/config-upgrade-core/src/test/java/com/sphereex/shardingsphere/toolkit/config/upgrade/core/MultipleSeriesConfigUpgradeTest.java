@@ -34,7 +34,7 @@ public final class MultipleSeriesConfigUpgradeTest {
         ShardingSphereProductType productType = ShardingSphereProductType.PROXY;
         ShardingSphereVersion sourceVersion = ShardingSphereVersion.V4_0_0;
         ShardingSphereVersion targetVersion = ShardingSphereVersion.V5_0_0;
-        SeriesConfigItems sourceConfigItems = new SeriesConfigItems(sourceVersion.getSeries());
+        SeriesConfigItems sourceConfigItems = new SeriesConfigItems(sourceVersion.getSeries(), productType);
         ConfigUpgradeParameter parameter = new ConfigUpgradeParameter(productType, sourceVersion, targetVersion, sourceConfigItems);
         MultipleSeriesConfigUpgrade configUpgrade = new MultipleSeriesConfigUpgrade();
         SeriesConfigItems targetConfigItems = configUpgrade.upgrade(parameter);

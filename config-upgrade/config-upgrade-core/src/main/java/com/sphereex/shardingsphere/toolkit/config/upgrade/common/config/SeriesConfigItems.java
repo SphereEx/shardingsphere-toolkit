@@ -17,6 +17,7 @@
 
 package com.sphereex.shardingsphere.toolkit.config.upgrade.common.config;
 
+import com.sphereex.shardingsphere.toolkit.config.upgrade.common.ShardingSphereProductType;
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.ShardingSphereSeries;
 import lombok.Getter;
 import lombok.NonNull;
@@ -35,6 +36,10 @@ public final class SeriesConfigItems {
     @Getter
     @NonNull
     private final ShardingSphereSeries series;
+    
+    @Getter
+    @NonNull
+    private final ShardingSphereProductType productType;
     
     private final List<SeriesConfigItem> configItemList = new ArrayList<>();
     
@@ -58,6 +63,6 @@ public final class SeriesConfigItems {
     
     @Override
     public String toString() {
-        return "SeriesConfigItems{" + "series=" + series + ", configItemList=" + configItemList + '}';
+        return "SeriesConfigItems{" + "series=" + series + ", productType=" + productType + ", configItemList=" + configItemList + '}';
     }
 }

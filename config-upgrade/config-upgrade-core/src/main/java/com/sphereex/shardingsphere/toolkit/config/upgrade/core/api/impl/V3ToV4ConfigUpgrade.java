@@ -36,7 +36,8 @@ public final class V3ToV4ConfigUpgrade implements SingleSeriesConfigUpgrade {
     @Override
     public SeriesConfigItems upgrade(final SeriesConfigItems oldConfigItems) {
         log.info("upgrade, oldConfigItems={}", oldConfigItems);
+        SeriesConfigItems result = new SeriesConfigItems(getSourceSeries().next(), oldConfigItems.getProductType());
         // TODO v3 to v4 upgrade
-        return new SeriesConfigItems(getSourceSeries().next());
+        return result;
     }
 }

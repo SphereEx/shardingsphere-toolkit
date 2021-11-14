@@ -17,6 +17,7 @@
 
 package com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.impl;
 
+import com.sphereex.shardingsphere.toolkit.config.upgrade.common.ShardingSphereProductType;
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.ShardingSphereSeries;
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.config.SeriesConfigItems;
 import com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.SingleSeriesConfigUpgrade;
@@ -36,7 +37,25 @@ public final class V4ToV5ConfigUpgrade implements SingleSeriesConfigUpgrade {
     @Override
     public SeriesConfigItems upgrade(final SeriesConfigItems oldConfigItems) {
         log.info("upgrade, oldConfigItems={}", oldConfigItems);
-        // TODO v4 to v5 upgrade
-        return new SeriesConfigItems(getSourceSeries().next());
+        ShardingSphereProductType productType = oldConfigItems.getProductType();
+        if (productType == ShardingSphereProductType.JDBC) {
+            return upgradeForJDBC(oldConfigItems);
+        } else if (productType == ShardingSphereProductType.PROXY) {
+            return upgradeForProxy(oldConfigItems);
+        } else {
+            throw new RuntimeException("Unknown productType: " + productType);
+        }
+    }
+    
+    private SeriesConfigItems upgradeForJDBC(final SeriesConfigItems oldConfigItems) {
+        SeriesConfigItems result = new SeriesConfigItems(getSourceSeries().next(), oldConfigItems.getProductType());
+        // TODO v4 to v5 upgrade for JDBC
+        return result;
+    }
+    
+    private SeriesConfigItems upgradeForProxy(final SeriesConfigItems oldConfigItems) {
+        SeriesConfigItems result = new SeriesConfigItems(getSourceSeries().next(), oldConfigItems.getProductType());
+        // TODO v4 to v5 upgrade for Proxy
+        return result;
     }
 }
