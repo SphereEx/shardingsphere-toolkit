@@ -29,7 +29,7 @@ import lombok.ToString;
 @RequiredArgsConstructor
 @Getter
 @Setter
-@ToString(exclude = "content")
+@ToString(exclude = {"content", "contentObject"})
 public final class SeriesConfigItem {
     
     @NonNull
