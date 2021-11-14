@@ -19,14 +19,14 @@ package com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.impl;
 
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.ShardingSphereSeries;
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.config.SeriesConfigItems;
-import com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.ShardingSphereSingleSeriesConfigUpgrade;
+import com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.SingleSeriesConfigUpgrade;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * ShardingSphere V3 to V4 config upgrade.
  */
 @Slf4j
-public final class ShardingSphereV3ToV4ConfigUpgrade implements ShardingSphereSingleSeriesConfigUpgrade {
+public final class V3ToV4ConfigUpgrade implements SingleSeriesConfigUpgrade {
     
     @Override
     public ShardingSphereSeries getSourceSeries() {

@@ -18,9 +18,9 @@
 package com.sphereex.shardingsphere.toolkit.config.upgrade.core;
 
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.ShardingSphereSeries;
-import com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.ShardingSphereSingleSeriesConfigUpgrade;
-import com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.impl.ShardingSphereV3ToV4ConfigUpgrade;
-import com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.impl.ShardingSphereV4ToV5ConfigUpgrade;
+import com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.SingleSeriesConfigUpgrade;
+import com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.impl.V3ToV4ConfigUpgrade;
+import com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.impl.V4ToV5ConfigUpgrade;
 import org.junit.Test;
 
 import java.util.Map;
@@ -32,14 +32,14 @@ public final class ConfigUpgradeServiceLoaderTest {
     
     @Test
     public void assertLoad() {
-        Map<ShardingSphereSeries, ShardingSphereSingleSeriesConfigUpgrade> actual = ConfigUpgradeServiceLoader.loadSingleSeriesConfigUpgradeImpl();
+        Map<ShardingSphereSeries, SingleSeriesConfigUpgrade> actual = ConfigUpgradeServiceLoader.loadSingleSeriesConfigUpgradeImpl();
         assertNotNull(actual);
         assertTrue(actual.size() > 0);
-        ShardingSphereSingleSeriesConfigUpgrade v3ConfigUpgrade = actual.get(ShardingSphereSeries.V3);
+        SingleSeriesConfigUpgrade v3ConfigUpgrade = actual.get(ShardingSphereSeries.V3);
         assertNotNull(v3ConfigUpgrade);
-        assertTrue(v3ConfigUpgrade instanceof ShardingSphereV3ToV4ConfigUpgrade);
-        ShardingSphereSingleSeriesConfigUpgrade v4ConfigUpgrade = actual.get(ShardingSphereSeries.V4);
+        assertTrue(v3ConfigUpgrade instanceof V3ToV4ConfigUpgrade);
+        SingleSeriesConfigUpgrade v4ConfigUpgrade = actual.get(ShardingSphereSeries.V4);
         assertNotNull(v4ConfigUpgrade);
-        assertTrue(v4ConfigUpgrade instanceof ShardingSphereV4ToV5ConfigUpgrade);
+        assertTrue(v4ConfigUpgrade instanceof V4ToV5ConfigUpgrade);
     }
 }

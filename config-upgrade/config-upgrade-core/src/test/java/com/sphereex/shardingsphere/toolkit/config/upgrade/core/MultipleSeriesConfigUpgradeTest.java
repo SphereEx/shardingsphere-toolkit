@@ -27,7 +27,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
-public final class ShardingSphereMultipleSeriesConfigUpgradeTest {
+public final class MultipleSeriesConfigUpgradeTest {
     
     @Test
     public void assertUpgrade1() {
@@ -36,7 +36,7 @@ public final class ShardingSphereMultipleSeriesConfigUpgradeTest {
         ShardingSphereVersion targetVersion = ShardingSphereVersion.V5_0_0;
         SeriesConfigItems sourceConfigItems = new SeriesConfigItems(sourceVersion.getSeries());
         ConfigUpgradeParameter parameter = new ConfigUpgradeParameter(productType, sourceVersion, targetVersion, sourceConfigItems);
-        ShardingSphereMultipleSeriesConfigUpgrade configUpgrade = new ShardingSphereMultipleSeriesConfigUpgrade();
+        MultipleSeriesConfigUpgrade configUpgrade = new MultipleSeriesConfigUpgrade();
         SeriesConfigItems targetConfigItems = configUpgrade.upgrade(parameter);
         assertNotNull(targetConfigItems);
         assertThat(targetConfigItems.getSeries(), is(targetVersion.getSeries()));

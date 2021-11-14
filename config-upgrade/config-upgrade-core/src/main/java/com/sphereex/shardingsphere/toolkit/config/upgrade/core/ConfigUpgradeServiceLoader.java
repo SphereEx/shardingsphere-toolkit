@@ -18,7 +18,7 @@
 package com.sphereex.shardingsphere.toolkit.config.upgrade.core;
 
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.ShardingSphereSeries;
-import com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.ShardingSphereSingleSeriesConfigUpgrade;
+import com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.SingleSeriesConfigUpgrade;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -35,14 +35,14 @@ public final class ConfigUpgradeServiceLoader {
      *
      * @return implementation grouped by series
      */
-    public static Map<ShardingSphereSeries, ShardingSphereSingleSeriesConfigUpgrade> loadSingleSeriesConfigUpgradeImpl() {
-        ServiceLoader<ShardingSphereSingleSeriesConfigUpgrade> serviceLoader = ServiceLoader.load(ShardingSphereSingleSeriesConfigUpgrade.class);
-        Iterator<ShardingSphereSingleSeriesConfigUpgrade> configUpgradeIterator = serviceLoader.iterator();
-        Map<ShardingSphereSeries, ShardingSphereSingleSeriesConfigUpgrade> result = new HashMap<>();
+    public static Map<ShardingSphereSeries, SingleSeriesConfigUpgrade> loadSingleSeriesConfigUpgradeImpl() {
+        ServiceLoader<SingleSeriesConfigUpgrade> serviceLoader = ServiceLoader.load(SingleSeriesConfigUpgrade.class);
+        Iterator<SingleSeriesConfigUpgrade> configUpgradeIterator = serviceLoader.iterator();
+        Map<ShardingSphereSeries, SingleSeriesConfigUpgrade> result = new HashMap<>();
         while (configUpgradeIterator.hasNext()) {
-            ShardingSphereSingleSeriesConfigUpgrade configUpgrade = configUpgradeIterator.next();
+            SingleSeriesConfigUpgrade configUpgrade = configUpgradeIterator.next();
             ShardingSphereSeries series = configUpgrade.getSourceSeries();
-            ShardingSphereSingleSeriesConfigUpgrade replaced = result.put(series, configUpgrade);
+            SingleSeriesConfigUpgrade replaced = result.put(series, configUpgrade);
             if (null != replaced) {
                 throw new RuntimeException(String.format("series %s config upgrade impl is replaced, old: %s, new: %s", series, replaced, configUpgrade));
             }

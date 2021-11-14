@@ -22,7 +22,7 @@ import com.beust.jcommander.ParameterException;
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.ConfigUpgradeParameter;
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.config.SeriesConfigItem;
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.config.SeriesConfigItems;
-import com.sphereex.shardingsphere.toolkit.config.upgrade.core.ShardingSphereMultipleSeriesConfigUpgrade;
+import com.sphereex.shardingsphere.toolkit.config.upgrade.core.MultipleSeriesConfigUpgrade;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -80,7 +80,7 @@ public final class ConfigUpgradeBootstrap {
             sourceConfigItems.addConfigItem(new SeriesConfigItem(each.getName(), content));
         }
         ConfigUpgradeParameter configUpgradeParameter = new ConfigUpgradeParameter(context.getProductType(), context.getSourceVersion(), context.getTargetVersion(), sourceConfigItems);
-        ShardingSphereMultipleSeriesConfigUpgrade configUpgrade = new ShardingSphereMultipleSeriesConfigUpgrade();
+        MultipleSeriesConfigUpgrade configUpgrade = new MultipleSeriesConfigUpgrade();
         SeriesConfigItems targetConfigItems = configUpgrade.upgrade(configUpgradeParameter);
         for (SeriesConfigItem each : targetConfigItems.getReadOnlyConfigItemList()) {
             File targetFile = new File(targetConfDir, each.getName());

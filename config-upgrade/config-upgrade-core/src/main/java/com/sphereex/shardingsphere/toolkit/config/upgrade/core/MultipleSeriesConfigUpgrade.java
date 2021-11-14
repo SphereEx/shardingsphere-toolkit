@@ -22,7 +22,7 @@ import com.sphereex.shardingsphere.toolkit.config.upgrade.common.ConfigUpgradePa
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.ShardingSphereSeries;
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.ShardingSphereVersion;
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.config.SeriesConfigItems;
-import com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.ShardingSphereSingleSeriesConfigUpgrade;
+import com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.SingleSeriesConfigUpgrade;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Iterator;
@@ -33,7 +33,7 @@ import java.util.Map;
  * ShardingSphere multiple series config upgrade.
  */
 @Slf4j
-public final class ShardingSphereMultipleSeriesConfigUpgrade {
+public final class MultipleSeriesConfigUpgrade {
     
     /**
      * Upgrade.
@@ -50,12 +50,12 @@ public final class ShardingSphereMultipleSeriesConfigUpgrade {
         List<ShardingSphereSeries> seriesUpgradePath = sourceVersion.getSeries().getSeriesUpgradePath(targetVersion.getSeries());
         log.info("seriesUpgradePath={}", seriesUpgradePath);
         Preconditions.checkState(seriesUpgradePath.size() > 0, "seriesUpgradePath is empty");
-        Map<ShardingSphereSeries, ShardingSphereSingleSeriesConfigUpgrade> seriesConfigUpgradeMap = ConfigUpgradeServiceLoader.loadSingleSeriesConfigUpgradeImpl();
+        Map<ShardingSphereSeries, SingleSeriesConfigUpgrade> seriesConfigUpgradeMap = ConfigUpgradeServiceLoader.loadSingleSeriesConfigUpgradeImpl();
         Iterator<ShardingSphereSeries> seriesIterator = seriesUpgradePath.iterator();
         SeriesConfigItems currentConfigItems = parameter.getSourceConfigItems();
         while (seriesIterator.hasNext()) {
             ShardingSphereSeries currentSeries = seriesIterator.next();
-            ShardingSphereSingleSeriesConfigUpgrade configUpgrade = seriesConfigUpgradeMap.get(currentSeries);
+            SingleSeriesConfigUpgrade configUpgrade = seriesConfigUpgradeMap.get(currentSeries);
             log.info("currentSeries={}, configUpgrade={}", currentSeries, configUpgrade);
             SeriesConfigItems nextConfigItems = configUpgrade.upgrade(currentConfigItems);
             log.info("nextConfigItems={}", nextConfigItems);

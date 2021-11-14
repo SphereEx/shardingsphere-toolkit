@@ -15,28 +15,28 @@
  * limitations under the License.
  */
 
-package com.sphereex.shardingsphere.toolkit.config.upgrade.core.api;
+package com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.impl;
 
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.ShardingSphereSeries;
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.config.SeriesConfigItems;
+import com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.SingleSeriesConfigUpgrade;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * ShardingSphere single series config upgrade SPI interface.
+ * ShardingSphere V4 to V5 config upgrade.
  */
-public interface ShardingSphereSingleSeriesConfigUpgrade {
+@Slf4j
+public final class V4ToV5ConfigUpgrade implements SingleSeriesConfigUpgrade {
     
-    /**
-     * Get source series.
-     *
-     * @return source series
-     */
-    ShardingSphereSeries getSourceSeries();
+    @Override
+    public ShardingSphereSeries getSourceSeries() {
+        return ShardingSphereSeries.V4;
+    }
     
-    /**
-     * Upgrade.
-     *
-     * @param oldConfigItems old series config items
-     * @return new series config items
-     */
-    SeriesConfigItems upgrade(SeriesConfigItems oldConfigItems);
+    @Override
+    public SeriesConfigItems upgrade(final SeriesConfigItems oldConfigItems) {
+        log.info("upgrade, oldConfigItems={}", oldConfigItems);
+        // TODO v4 to v5 upgrade
+        return new SeriesConfigItems(getSourceSeries().next());
+    }
 }
