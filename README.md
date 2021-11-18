@@ -31,7 +31,6 @@ git clone --depth=1 https://github.com/SphereEx/shardingsphere-toolkit.git
 ```
 mvn clean
 mvn package
-mvn test
 ```
 
 3. Run

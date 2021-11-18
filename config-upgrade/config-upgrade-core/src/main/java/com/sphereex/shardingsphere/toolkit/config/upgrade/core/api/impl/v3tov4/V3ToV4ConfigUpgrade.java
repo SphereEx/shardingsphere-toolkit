@@ -15,47 +15,29 @@
  * limitations under the License.
  */
 
-package com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.impl;
+package com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.impl.v3tov4;
 
-import com.sphereex.shardingsphere.toolkit.config.upgrade.common.ShardingSphereProductType;
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.ShardingSphereSeries;
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.config.SeriesConfigItems;
 import com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.SingleSeriesConfigUpgrade;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * ShardingSphere V4 to V5 config upgrade.
+ * ShardingSphere V3 to V4 config upgrade.
  */
 @Slf4j
-public final class V4ToV5ConfigUpgrade implements SingleSeriesConfigUpgrade {
+public final class V3ToV4ConfigUpgrade implements SingleSeriesConfigUpgrade {
     
     @Override
     public ShardingSphereSeries getSourceSeries() {
-        return ShardingSphereSeries.V4;
+        return ShardingSphereSeries.V3;
     }
     
     @Override
     public SeriesConfigItems upgrade(final SeriesConfigItems oldConfigItems) {
         log.info("upgrade, oldConfigItems={}", oldConfigItems);
-        ShardingSphereProductType productType = oldConfigItems.getProductType();
-        if (productType == ShardingSphereProductType.JDBC) {
-            return upgradeForJDBC(oldConfigItems);
-        } else if (productType == ShardingSphereProductType.PROXY) {
-            return upgradeForProxy(oldConfigItems);
-        } else {
-            throw new RuntimeException("Unknown productType: " + productType);
-        }
-    }
-    
-    private SeriesConfigItems upgradeForJDBC(final SeriesConfigItems oldConfigItems) {
         SeriesConfigItems result = new SeriesConfigItems(getSourceSeries().next(), oldConfigItems.getProductType());
-        // TODO v4 to v5 upgrade for JDBC
-        return result;
-    }
-    
-    private SeriesConfigItems upgradeForProxy(final SeriesConfigItems oldConfigItems) {
-        SeriesConfigItems result = new SeriesConfigItems(getSourceSeries().next(), oldConfigItems.getProductType());
-        // TODO v4 to v5 upgrade for Proxy
+        // TODO v3 to v4 upgrade
         return result;
     }
 }

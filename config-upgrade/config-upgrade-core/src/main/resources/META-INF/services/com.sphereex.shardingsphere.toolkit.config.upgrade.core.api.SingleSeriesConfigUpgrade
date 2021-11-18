@@ -15,5 +15,5 @@
 # limitations under the License.
 #
 
-com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.impl.V3ToV4ConfigUpgrade
-com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.impl.V4ToV5ConfigUpgrade
+com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.impl.v3tov4.V3ToV4ConfigUpgrade
+com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.impl.v4tov5.V4ToV5ConfigUpgrade

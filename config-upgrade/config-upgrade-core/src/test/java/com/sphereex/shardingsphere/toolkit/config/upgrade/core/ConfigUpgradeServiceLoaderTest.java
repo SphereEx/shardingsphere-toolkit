@@ -19,8 +19,8 @@ package com.sphereex.shardingsphere.toolkit.config.upgrade.core;
 
 import com.sphereex.shardingsphere.toolkit.config.upgrade.common.ShardingSphereSeries;
 import com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.SingleSeriesConfigUpgrade;
-import com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.impl.V3ToV4ConfigUpgrade;
-import com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.impl.V4ToV5ConfigUpgrade;
+import com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.impl.v3tov4.V3ToV4ConfigUpgrade;
+import com.sphereex.shardingsphere.toolkit.config.upgrade.core.api.impl.v4tov5.V4ToV5ConfigUpgrade;
 import org.junit.Test;
 
 import java.util.Map;
